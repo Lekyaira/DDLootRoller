@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+struct LootItem: Identifiable {
+    let name: String
+    let goldValue: Float
+    let id = UUID()
+    
+}
+
 struct ContentView: View {
     @State var crValue: Int = 1
     @State var isIndivitual = true
+    @State var loot: [LootItem]
     
     var body: some View {
         VStack {
@@ -29,7 +37,9 @@ struct ContentView: View {
             }
             HStack {
                 Button(action: {
-                    
+                    loot.removeAll()
+                    loot.append(LootItem(name: "Gun", goldValue: 100))
+                    loot.append(LootItem(name: "Cheese", goldValue: 0.01))
                 }) {
                     Text("Get Loot")
                     //    .padding(10.0)
@@ -40,13 +50,16 @@ struct ContentView: View {
                 }.buttonStyle(DefaultButtonStyle())
                 Spacer()
             }
-            Text("Individual? \(isIndivitual ? "True" : "False")")
+            
+            List(loot) {
+                Text($0.name)
+            }
         }.padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView( loot: [LootItem(name: "Test", goldValue: 2)])
     }
 }
