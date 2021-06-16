@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: LootItem
 struct LootItem: Identifiable {
     let name: String
     let goldValue: Float
@@ -14,6 +15,29 @@ struct LootItem: Identifiable {
     
 }
 
+// Represents rows in the loot listbox
+// MARK: LootRow
+struct LootRow: View {
+    var item: LootItem
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading){
+                Text(item.name)
+                HStack{
+                    // Split gold value into silver and copper
+                    // This was a massive headache to set up
+                    Text("\(item.goldValue, specifier: "%.0f") gold").font(.subheadline).foregroundColor(.gray)
+                    Text("\((item.goldValue-item.goldValue.rounded(.down))*100, specifier: "%.0f") silver").font(.subheadline).foregroundColor(.gray)
+                    Text("\((((item.goldValue-item.goldValue.rounded(.down))*100)-((item.goldValue-item.goldValue.rounded(.down))*100).rounded(.down))*100, specifier: "%.0f") copper").font(.subheadline).foregroundColor(.gray)
+                }
+            }
+            Spacer()
+        }
+    }
+}
+
+// MARK: ContentView
 struct ContentView: View {
     @State var crValue: Int = 1
     @State var isIndivitual = true
@@ -40,26 +64,23 @@ struct ContentView: View {
                     loot.removeAll()
                     loot.append(LootItem(name: "Gun", goldValue: 100))
                     loot.append(LootItem(name: "Cheese", goldValue: 0.01))
+                    loot.append(LootItem(name: "Tin Penny", goldValue: 0.0001))
                 }) {
                     Text("Get Loot")
-                    //    .padding(10.0)
-                    //    .overlay(
-                    //        RoundedRectangle(cornerRadius: 10.0)
-                    //            .stroke(lineWidth: 2.0)
-                    //    )
                 }.buttonStyle(DefaultButtonStyle())
                 Spacer()
             }
             
-            List(loot) {
-                Text($0.name)
+            List(loot) { lootItem in
+                LootRow(item: lootItem)
             }
         }.padding()
     }
 }
 
+// MARK: Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView( loot: [LootItem(name: "Test", goldValue: 2)])
+        ContentView( loot: [LootItem(name: "Test", goldValue: 2), LootItem(name: "Test2", goldValue: 0.01), LootItem(name: "Test3", goldValue: 0.0012), LootItem(name: "Test4", goldValue: 1.1122)])
     }
 }
