@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: CheckboxToggleStyle
 struct CheckboxToggleStyle: ToggleStyle{
     func makeBody(configuration: Configuration) -> some View {
         return HStack{
@@ -20,6 +21,7 @@ struct CheckboxToggleStyle: ToggleStyle{
     }
 }
 
+// MARK: DefaultButtonStyle
 struct DefaultButtonStyle: ButtonStyle{
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -33,3 +35,6 @@ struct DefaultButtonStyle: ButtonStyle{
             )
     }
 }
+
+// MARK: DefaultStepperStyle
+// TODO: Add style

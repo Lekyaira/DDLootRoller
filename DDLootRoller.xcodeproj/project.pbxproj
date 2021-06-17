@@ -15,6 +15,10 @@
 		94FE406226790CA900561D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94FE404C26790CA800561D80 /* Assets.xcassets */; };
 		94FE406C2679416900561D80 /* StandardViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE406B2679416900561D80 /* StandardViews.swift */; };
 		94FE406D2679416900561D80 /* StandardViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE406B2679416900561D80 /* StandardViews.swift */; };
+		94FE406F267A5F6F00561D80 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE406E267A5F6F00561D80 /* Random.swift */; };
+		94FE4070267A5F6F00561D80 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE406E267A5F6F00561D80 /* Random.swift */; };
+		94FE4072267A5F7F00561D80 /* DMGLoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE4071267A5F7F00561D80 /* DMGLoot.swift */; };
+		94FE4073267A5F7F00561D80 /* DMGLoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE4071267A5F7F00561D80 /* DMGLoot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,8 @@
 		94FE405B26790CA900561D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94FE405C26790CA900561D80 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		94FE406B2679416900561D80 /* StandardViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViews.swift; sourceTree = "<group>"; };
+		94FE406E267A5F6F00561D80 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		94FE4071267A5F7F00561D80 /* DMGLoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGLoot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +66,9 @@
 		94FE404926790CA800561D80 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				94FE4075267A5FBB00561D80 /* Views */,
+				94FE4074267A5F9800561D80 /* Model */,
 				94FE404A26790CA800561D80 /* DDLootRollerApp.swift */,
-				94FE406B2679416900561D80 /* StandardViews.swift */,
-				94FE404B26790CA800561D80 /* ContentView.swift */,
 				94FE404C26790CA800561D80 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -92,6 +98,24 @@
 				94FE405C26790CA900561D80 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		94FE4074267A5F9800561D80 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94FE406E267A5F6F00561D80 /* Random.swift */,
+				94FE4071267A5F7F00561D80 /* DMGLoot.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94FE4075267A5FBB00561D80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94FE406B2679416900561D80 /* StandardViews.swift */,
+				94FE404B26790CA800561D80 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +215,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FE406F267A5F6F00561D80 /* Random.swift in Sources */,
 				94FE405F26790CA900561D80 /* ContentView.swift in Sources */,
 				94FE406C2679416900561D80 /* StandardViews.swift in Sources */,
+				94FE4072267A5F7F00561D80 /* DMGLoot.swift in Sources */,
 				94FE405D26790CA900561D80 /* DDLootRollerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,8 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FE4070267A5F6F00561D80 /* Random.swift in Sources */,
 				94FE406026790CA900561D80 /* ContentView.swift in Sources */,
 				94FE406D2679416900561D80 /* StandardViews.swift in Sources */,
+				94FE4073267A5F7F00561D80 /* DMGLoot.swift in Sources */,
 				94FE405E26790CA900561D80 /* DDLootRollerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
