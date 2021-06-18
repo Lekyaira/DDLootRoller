@@ -13,23 +13,28 @@ class DMGLoot {
     
     // MARK: Coins
     private func GetPlatinumCoins(plat: Int) -> LootItem {
-        // Return a platinum coins item of the total value
-        return LootItem(name: "\(plat) Platinum Coins", goldValue: Float(plat)*100.0)
+        // Return a platinum coins item. Coins have their own innate value.
+        return LootItem(name: "\(plat) Platinum coins", goldValue: 0)
     }
     
     private func GetGoldCoins(gold: Int) -> LootItem {
-        // Return a gold coins item of the total value
-        return LootItem(name: "\(gold) Gold Coins", goldValue: Float(gold))
+        // Return a gold coins item. Coins have their own innate value.
+        return LootItem(name: "\(gold) Gold coins", goldValue: 0)
+    }
+    
+    private func GetElectrumCoins(electrum: Int) -> LootItem {
+        // Return an electrum coins item. Coins have their own innate value.
+        return LootItem(name: "\(electrum) Electrum coins", goldValue: 0)
     }
     
     private func GetSilverCoins(silver: Int) -> LootItem {
-        // Return a silver coins item of the total value
-        return LootItem(name: "\(silver) Silver Coins", goldValue: Float(silver)/100.0)
+        // Return a silver coins item. Coins have their own innate value.
+        return LootItem(name: "\(silver) Silver coins", goldValue: 0)
     }
     
     private func GetCopperCoins(copper: Int) -> LootItem {
-        // Returnr a copper coins item of the total value
-        return LootItem(name: "\(copper) Copper Coins", goldValue: Float(copper)/10000.0)
+        // Returnr a copper coins item. Coins have their own innate value.
+        return LootItem(name: "\(copper) Copper coins", goldValue: 0)
     }
     
     // MARK: 10GP Gemstones
@@ -268,44 +273,167 @@ class DMGLoot {
     private func GetMagicItemA() -> LootItem {
         // Get a ramdon magic item from our list.
         // Distribution of magic items is not even.
-        let roll = rnd.getInt(min: 1, max: 101)
+        let roll = rnd.getInt(min: 1, max: 100)
         var magicitem: String = ""
-        if roll <= 50 { magicitem = magicitemsa[0] }
-        else if roll <= 60 { magicitem = magicitemsa[1] }
-        else if roll <= 70 { magicitem = magicitemsa[2] }
-        else if roll <= 90 { magicitem = magicitemsa[3] }
-        else if roll <= 94 { magicitem = magicitemsa[4] }
-        else if roll <= 98 { magicitem = magicitemsa[5] }
-        else if roll <= 99 { magicitem = magicitemsa[6] }
-        else if roll <= 100 { magicitem = magicitemsa[7] }
+        if roll <= 50 { magicitem = magicitemsa[0] }            // Potion of healing
+        else if roll <= 60 { magicitem = magicitemsa[1] }       // Spell scroll (cantrip)
+        else if roll <= 70 { magicitem = magicitemsa[2] }       // Potion of climbing
+        else if roll <= 90 { magicitem = magicitemsa[3] }       // Spell scroll (1st level)
+        else if roll <= 94 { magicitem = magicitemsa[4] }       // Spell scroll (2nd level)
+        else if roll <= 98 { magicitem = magicitemsa[5] }       // Potion of greater healing
+        else if roll <= 99 { magicitem = magicitemsa[6] }       // Bag of holding
+        else if roll <= 100 { magicitem = magicitemsa[7] }      // Driftglobe
+        
+        // Return the selected magic item. Magic items have no intrinsic value.
+        return LootItem(name: magicitem, goldValue: 0)
+    }
+    
+    // MARK: Magic Items B
+    private let magicitemsb = [
+        "Potion of greater healing",
+        "Potion of fire breath",
+        "Potion of resistance",
+        "Ammunition, +1",
+        "Potion of animal friendship",
+        "Potion of hill giant strength",
+        "Potion of growth",
+        "Potion of water breathing",
+        "Spell scroll (2nd level)",
+        "Spell scroll (3rd level)",
+        "Bag of holding",
+        "Keoghtom's ointment",
+        "Oil of slipperiness",
+        "Dust of disappearance",
+        "Dust of dryness",
+        "Dust of sneezing and choking",
+        "Elemental gem",
+        "Philter of love",
+        "Alchemy jug",
+        "Cap of water breathing",
+        "Cloak of the manta ray",
+        "Driftglobe",
+        "Goggles of night",
+        "Helm of comprehending languages",
+        "Immovable rod",
+        "Lantern of revealing",
+        "Mariner's armor",
+        "Mithral armor",
+        "Potion of poison",
+        "Ring of swimming",
+        "Robe of useful items",
+        "Rope of climbing",
+        "Saddle of the cavalier",
+        "Wand of magic detection",
+        "Wand of secrets"
+    ]
+    
+    private func GetMagicItemB() -> LootItem {
+        // Get a ramdon magic item from our list.
+        // Distribution of magic items is not even.
+        let roll = rnd.getInt(min: 1, max: 100)
+        var magicitem: String = ""
+        if roll <= 15 { magicitem = magicitemsa[0] }            // Potion of greater healing
+        else if roll <= 22 { magicitem = magicitemsa[1] }       // Potion of fire breath
+        else if roll <= 29 { magicitem = magicitemsa[2] }       // Potion of resistance
+        else if roll <= 34 { magicitem = magicitemsa[3] }       // Ammunition, +1
+        else if roll <= 39 { magicitem = magicitemsa[4] }       // Potion of animal friendship
+        else if roll <= 44 { magicitem = magicitemsa[5] }       // Potion of hill giant strength
+        else if roll <= 49 { magicitem = magicitemsa[6] }       // Potion of growth
+        else if roll <= 54 { magicitem = magicitemsa[7] }       // Potion of water breathing
+        else if roll <= 59 { magicitem = magicitemsa[8] }       // Spell scroll (2nd level)
+        else if roll <= 64 { magicitem = magicitemsa[9] }       // Spell scroll (3rd level)
+        else if roll <= 67 { magicitem = magicitemsa[10] }      // Bag of holding
+        else if roll <= 70 { magicitem = magicitemsa[11] }      // Keoghtom's ointment
+        else if roll <= 73 { magicitem = magicitemsa[12] }      // Oil of slipperiness
+        else if roll <= 75 { magicitem = magicitemsa[13] }      // Dust of disappearance
+        else if roll <= 77 { magicitem = magicitemsa[14] }      // Dust of dryness
+        else if roll <= 79 { magicitem = magicitemsa[15] }      // Dust of sneezing and choking
+        else if roll <= 81 { magicitem = magicitemsa[16] }      // Elemental gem
+        else if roll <= 83 { magicitem = magicitemsa[17] }      // Philter of love
+        else if roll <= 84 { magicitem = magicitemsa[18] }      // Alchemy jug
+        else if roll <= 85 { magicitem = magicitemsa[19] }      // Cap of water breathing
+        else if roll <= 86 { magicitem = magicitemsa[20] }      // Cloak of the manta ray
+        else if roll <= 87 { magicitem = magicitemsa[21] }      // Driftglobe
+        else if roll <= 88 { magicitem = magicitemsa[22] }      // Goggles of night
+        else if roll <= 89 { magicitem = magicitemsa[23] }      // Helm of comprehending languages
+        else if roll <= 90 { magicitem = magicitemsa[24] }      // Immovable rod
+        else if roll <= 91 { magicitem = magicitemsa[25] }      // Lantern of revealing
+        else if roll <= 92 { magicitem = magicitemsa[26] }      // Mariner's armor
+        else if roll <= 93 { magicitem = magicitemsa[27] }      // Mithral armor
+        else if roll <= 94 { magicitem = magicitemsa[28] }      // Potion of poison
+        else if roll <= 95 { magicitem = magicitemsa[29] }      // Ring of swimming
+        else if roll <= 96 { magicitem = magicitemsa[30] }      // Robe of useful items
+        else if roll <= 97 { magicitem = magicitemsa[31] }      // Rope of climbing
+        else if roll <= 98 { magicitem = magicitemsa[32] }      // Saddle of the cavalier
+        else if roll <= 99 { magicitem = magicitemsa[33] }      // Wand of magic detection
+        else if roll <= 100 { magicitem = magicitemsa[34] }     // Wand of secrets
+        
         // Return the selected magic item. Magic items have no intrinsic value.
         return LootItem(name: magicitem, goldValue: 0)
     }
     
     // MARK: GetLoot Function
     public func GetLoot(challengeRating: Int, isIndividual: Bool) -> [LootItem] {
-        let numItems = rnd.getInt(min: 1, max: 10)
-        var loot: [LootItem] = []
+        var loot: [LootItem] = []               // Our loot object. Will return after we populate it.
+        let d100 = rnd.getInt(min: 1, max: 100) // Make a d100 roll for the table
         
-        for _ in 1...numItems {
-            let gemType = rnd.getInt(min: 0, max: 5)
-            if gemType == 0 {
-                loot.append(GetGemstone10GP())
-            } else
-            if gemType == 1 {
-                loot.append(GetGemstone50GP())
+        if isIndividual {                       // Individual treasure
+            if challengeRating <= 4 {           // CR 0-4
+                if d100 <= 30 {
+                    var copper = 0
+                    for _ in 1...5 {
+                        copper += rnd.getInt(min: 1, max: 6)
+                    }
+                    loot.append(GetCopperCoins(copper: copper))
+                }
+                else if d100 <= 60 {
+                    var silver = 0
+                    for _ in 1...4 {
+                        silver += rnd.getInt(min: 1, max: 6)
+                    }
+                    loot.append(GetSilverCoins(silver: silver))
+                }
+                else if d100 <= 70 {
+                    var electrum = 0
+                    for _ in 1...3 {
+                        electrum += rnd.getInt(min: 1, max: 6)
+                    }
+                    loot.append(GetElectrumCoins(electrum: electrum))
+                }
+                else if d100 <= 95 {
+                    var gold = 0
+                    for _ in 1...3 {
+                        gold += rnd.getInt(min: 1, max: 6)
+                    }
+                    loot.append(GetGoldCoins(gold: gold))
+                }
+                else if d100 <= 100 {
+                    var platinum = 0
+                    platinum = rnd.getInt(min: 1, max: 6)
+                    loot.append(GetPlatinumCoins(plat: platinum))
+                }
             }
-            if gemType == 2 {
-                loot.append(GetGemstone100GP())
+            else if challengeRating <= 10 {     // CR 5-10
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
             }
-            if gemType == 3 {
-                loot.append(GetGemstone500GP())
+            else if challengeRating <= 16 {     // CR 11-16
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
             }
-            if gemType == 4 {
-                loot.append(GetGemstone1000GP())
+            else if challengeRating >= 17 {     // CR 17+
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
             }
-            if gemType == 5 {
-                loot.append(GetGemstone5000GP())
+        } else {                                // Treasure hoard
+            if challengeRating <= 4 {           // CR 0-4
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
+            }
+            else if challengeRating <= 10 {     // CR 5-10
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
+            }
+            else if challengeRating <= 16 {     // CR 11-16
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
+            }
+            else if challengeRating >= 17 {     // CR 17+
+                loot.append(LootItem(name: "NOT IMPLIMENTED", goldValue: 0))
             }
         }
         

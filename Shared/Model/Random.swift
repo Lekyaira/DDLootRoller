@@ -34,7 +34,7 @@ public class Distribution {
     
     // Integer value from min to max
     public func getInt(min: Int, max: Int) -> Int {
-        return Int(getDouble(lower: Double(min), upper: Double(max)))
+        return Int(getDouble(lower: Double(min), upper: Double(max+1)))
     }
     
     // Random integer
@@ -51,6 +51,7 @@ public class splitmix64: Distribution, Random {
         s = seed
     }
     override init() {
+        // If we don't provide a seed, just get one from the default prng
         s = UInt64.random(in: UInt64.min...UInt64.max)
     }
     
@@ -70,6 +71,7 @@ public class xorshift1024star: Distribution, Random {
     
     init(seed: UInt64){
         p = 0
+        // If we provide a seed, we'll use that with splitmix64 to make the 16 seeds
         let rnd = splitmix64(seed: seed)
         for i in 0..<16 {
             s[i] = rnd.getNext()
@@ -77,6 +79,7 @@ public class xorshift1024star: Distribution, Random {
     }
     override init(){
         p = 0
+        // If we don't provide a seed, we'll use splitmix64 to make 16 random seeds
         let rnd = splitmix64()
         for i in 0..<16 {
             s[i] = rnd.getNext()

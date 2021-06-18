@@ -22,10 +22,10 @@ struct Coins {
         return Int(value.rounded(.down))
     }
     func Silver() -> Int {
-        return Int((value-value.rounded(.down))*100)
+        return Int((value-value.rounded(.down))*10)
     }
     func Copper() -> Int {
-        return Int((((value-value.rounded(.down))*100)-((value-value.rounded(.down))*100).rounded(.down))*100)
+        return Int((((value-value.rounded(.down))*10)-((value-value.rounded(.down))*10).rounded(.down))*10)
     }
 }
 
@@ -117,7 +117,7 @@ struct ContentView: View {
                         let cs = c > 0 ? "\(g)c" : ""
                         
                         // Build the final loot item string
-                        lootString += "\(lootItem.name) -  \(gs) \(ss) \(cs)\n"
+                        lootString += "\(lootItem.name)\(g+s+c > 0 ? " - \(gs) \(ss) \(cs)" : "")\n"
                     }
                     
                     // Paste new string with loot to clipboard
@@ -144,6 +144,6 @@ struct ContentView: View {
 // MARK: Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView( loot: [LootItem(name: "Test", goldValue: 2), LootItem(name: "Test2", goldValue: 0.01), LootItem(name: "Test3", goldValue: 0.0012), LootItem(name: "Test4", goldValue: 1.1122), LootItem(name: "Test5", goldValue: 0)])
+        ContentView( loot: [LootItem(name: "Test", goldValue: 2), LootItem(name: "Test2", goldValue: 0.1), LootItem(name: "Test3", goldValue: 0.02), LootItem(name: "Test4", goldValue: 1.12), LootItem(name: "Test5", goldValue: 0)])
     }
 }
